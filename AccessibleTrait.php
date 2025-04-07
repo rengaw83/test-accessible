@@ -42,13 +42,21 @@ trait AccessibleTrait
 
     /**
      * Helper function to set an inaccessible property.
+     *
+     * @template T
+     *
+     * @param T $object
+     *
+     * @return T
      */
-    protected function setInaccessibleProperty(object $object, string $property, mixed $value = null): void
+    protected function setInaccessibleProperty(object $object, string $property, mixed $value = null): object
     {
         $refObject = new \ReflectionObject($object);
         $refProperty = $refObject->getProperty($property);
         $refProperty->setAccessible(true);
         $refProperty->setValue($object, $value);
+
+        return $object;
     }
 
     /**

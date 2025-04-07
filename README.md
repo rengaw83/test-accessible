@@ -95,7 +95,7 @@ class MyUnitTest extends PHPUnit\Framework\TestCase
     public function getStateShouldReturnCorrectInitialValue(): void
     {
         $this->assertSame(
-            $this->getInaccessibleConstant($object, 'STATE_ON'),
+            $this->getInaccessibleConstant($this->unit, 'STATE_ON'),
             $this->getInaccessibleProperty($this->unit, 'state')
         );
     }
@@ -103,16 +103,18 @@ class MyUnitTest extends PHPUnit\Framework\TestCase
     #[\PHPUnit\Framework\Attributes\Test]
     public function getStateReturnsNewValueFromSetter(): void
     {
-        $off = $this->getInaccessibleConstant($object, 'STATE_OFF');
-        $this->callInaccessibleMethod($object, 'setState', $off)
+        $off = $this->getInaccessibleConstant($this->unit, 'STATE_OFF');
+        $this->callInaccessibleMethod($this->unit, 'setState', $off)
         $this->assertSame($off, $this->unit->getState());
     }
 
     #[\PHPUnit\Framework\Attributes\Test]
     public function getStateReturnsNewValueFromPropertyAllocation(): void
     {
-        $this->setInaccessibleProperty($object, 'state', 'unknown')
-        $this->assertSame('unknown', $this->unit->getState());
+        $this->assertSame(
+            'unknown', 
+            $this->setInaccessibleProperty($this->unit, 'state', 'unknown')->getState()
+        );
     }
 }
 ```
