@@ -16,7 +16,7 @@ trait AccessibleTrait
     /**
      * Helper function to call an inaccessible method.
      */
-    protected function callInaccessibleMethod(object $object, string $name): mixed
+    protected static function callInaccessibleMethod(object $object, string $name): mixed
     {
         $arguments = func_get_args();
         array_splice($arguments, 0, 2);
@@ -31,7 +31,7 @@ trait AccessibleTrait
     /**
      * Helper function to get an inaccessible property.
      */
-    protected function getInaccessibleProperty(object $object, string $property): mixed
+    protected static function getInaccessibleProperty(object $object, string $property): mixed
     {
         $refObject = new \ReflectionObject($object);
         $refProperty = $refObject->getProperty($property);
@@ -49,7 +49,7 @@ trait AccessibleTrait
      *
      * @return T
      */
-    protected function setInaccessibleProperty(object $object, string $property, mixed $value = null): object
+    protected static function setInaccessibleProperty(object $object, string $property, mixed $value = null): object
     {
         $refObject = new \ReflectionObject($object);
         $refProperty = $refObject->getProperty($property);
@@ -62,7 +62,7 @@ trait AccessibleTrait
     /**
      * Helper function to get an inaccessible constant.
      */
-    protected function getInaccessibleConstant(object $object, string $constant): mixed
+    protected static function getInaccessibleConstant(object $object, string $constant): mixed
     {
         $refObject = new \ReflectionObject($object);
         $refProperty = $refObject->getReflectionConstant($constant);
