@@ -60,6 +60,25 @@ trait AccessibleTrait
     }
 
     /**
+     * Helper function to set multiple values to inaccessible properties.
+     *
+     * @template T
+     *
+     * @param T                    $object
+     * @param array<string, mixed> $values
+     *
+     * @return T
+     */
+    protected static function setInaccessibleProperties(object $object, array $values = []): object
+    {
+        foreach ($values as $property => $value) {
+            static::setInaccessibleProperty($object, $property, $value);
+        }
+
+        return $object;
+    }
+
+    /**
      * Helper function to get an inaccessible constant.
      */
     protected static function getInaccessibleConstant(object $object, string $constant): mixed

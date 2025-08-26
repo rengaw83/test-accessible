@@ -45,6 +45,12 @@ $this->getInaccessibleProperty($object, 'property_name');
 $this->setInaccessibleProperty($object, 'property_name', 'new_property_value');
 ```
 
+#### Set multiple inaccessible properties
+
+```php
+$this->setInaccessibleProperties($object, ['property_name' => 'new_property_value']);
+```
+
 #### Get inaccessible constant
 
 ```php
